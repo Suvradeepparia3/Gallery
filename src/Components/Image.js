@@ -11,6 +11,7 @@ function Image(props) {
         console.log(value)
     }
 
+    // not working
     const downloadImage = () => {
     userInfo()
     if(value !== null){
