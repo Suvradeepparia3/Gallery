@@ -1,35 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 function Image(props) {
 
+    const [ value, setValue ] = useState(false);
     const url = props.data.post_url;
-    let value;
 
+    let details;
     const userInfo = () => {
-        value = prompt('Enter Your Name');
-        console.log(value)
+        details = prompt('Enter Your Name');
+        if(details !== null){
+            setValue(true);
+        }
+        console.log(details);
     }
 
     // not working
     const downloadImage = () => {
     userInfo()
-    if(value !== null){
+    if(value === true) {  
         axios({
-            imageUrl: url,
+            url: url + '/download', //your url
             method: 'GET',
-            responseType: 'blob',
-        }).then((response) => {
-            const imageurl = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = imageurl;
-            link.setAttribute('download', 'file.jpg'); //or any other extension
-            document.body.appendChild(link);
-            link.click();
-        })
-        .catch( error => {
-            console.log(error)
-        })
+            responseType: 'blob', // important
+          }).then((response) => {
+             const url = window.URL.createObjectURL(new Blob([response.data]));
+             const link = document.createElement('a');
+             link.href = url;
+             link.setAttribute('download', 'file.jpg'); //or any other extension
+             document.body.appendChild(link);
+             link.click();
+          })
+          .catch( error => {
+               console.log(error)
+            }) 
     }
     }
 
