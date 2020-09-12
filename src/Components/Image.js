@@ -10,6 +10,7 @@ function Image(props) {
     let details;
     const downloadImage = () => {
         details = prompt('Enter Your Name')
+        // there is no check point 
         getImage();
         console.log(details);
     }
