@@ -4,29 +4,32 @@ import axios from 'axios';
 function Image(props) {
 
     const url = props.data.post_url;
+    let value;
 
     const userInfo = () => {
-        var value = prompt('Enter Your Name');
+        value = prompt('Enter Your Name');
         console.log(value)
     }
 
     const downloadImage = () => {
     userInfo()
-    axios({
-        imageUrl: url,
-        method: 'GET',
-        responseType: 'blob',
-    }).then((response) => {
-        const imageurl = window.URL.createObjectURL(new Blob([response.data]));
-        const link = document.createElement('a');
-        link.href = imageurl;
-        link.setAttribute('download', 'file.jpg'); //or any other extension
-        document.body.appendChild(link);
-        link.click();
-    })
-    .catch( error => {
-        console.log(error)
-    })
+    if(value !== null){
+        axios({
+            imageUrl: url,
+            method: 'GET',
+            responseType: 'blob',
+        }).then((response) => {
+            const imageurl = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = imageurl;
+            link.setAttribute('download', 'file.jpg'); //or any other extension
+            document.body.appendChild(link);
+            link.click();
+        })
+        .catch( error => {
+            console.log(error)
+        })
+    }
     }
 
     return (
