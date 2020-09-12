@@ -41,7 +41,7 @@ function Image(props) {
         <div>
         <div className="row">
             <div className="column">
-                        {/* <img src={url + '/download'} alt="Responsive" /> */}
+                        <img src={url + '/download'} alt="Responsive" />
                         <span>{props.data.author}</span>
                         <span><button disabled={button} onClick={downloadImage}>Download</button></span>
                         
