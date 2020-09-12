@@ -3,24 +3,19 @@ import axios from 'axios';
 
 function Image(props) {
 
-    const [ value, setValue ] = useState(false);
     const [ button, setButton ] = useState(false);
+    
     const url = props.data.post_url;
 
     let details;
-    const userInfo = () => {
-        details = prompt('Enter Your Name');
-        if(details !== null){
-            setValue(true);
-        }
+    const downloadImage = () => {
+        details = prompt('Enter Your Name')
+        getImage();
         console.log(details);
     }
 
     // not working
-    const downloadImage = () => {
-    userInfo()
-    if(value === true) {  
-        console.log('jj')
+    const getImage = () => {
         axios({
             // getting Cors error
             // url: url + '/download', //original url
@@ -40,13 +35,13 @@ function Image(props) {
                console.log(error)
             }) 
     }
-    }
+    
 
     return (
         <div>
         <div className="row">
             <div className="column">
-                        <img src={url + '/download'} alt="Responsive" />
+                        {/* <img src={url + '/download'} alt="Responsive" /> */}
                         <span>{props.data.author}</span>
                         <span><button disabled={button} onClick={downloadImage}>Download</button></span>
                         
