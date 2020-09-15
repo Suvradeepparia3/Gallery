@@ -17,9 +17,10 @@ function Image(props) {
 
     // not working
     const getImage = () => {
+        // const proxy = "https://cors-anywhere.herokuapp.com/";
         axios({
             // getting Cors error
-            // url: url + '/download', //original url
+            // url: `${proxy}${props.data.post_url}` + '/download', //original url
             url: 'https://source.unsplash.com/random/500*500', // demo url
             method: 'GET',
             responseType: 'blob', // important
